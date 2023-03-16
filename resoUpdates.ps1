@@ -1,5 +1,5 @@
 # Set execution policy to unrestricted
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+#Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 
 # Send message to user
 $msgTitle = "Maintenance Notification"
@@ -19,7 +19,7 @@ Install-Module -Name PSWindowsUpdate -Force
 $Updates = Get-WUInstall
 
 # Install updates
-if ($Updates) {
+if ($Updates.Count -gt 0) {
     Write-Output "Installing updates..."
     $Result = Install-WindowsUpdate -AcceptAll -IgnoreReboot -ScheduleReboot $(Get-Date "20:00:00") | Out-String
     $Result | Out-File $OutputFile -Append
