@@ -48,6 +48,3 @@ else {
     # Remove the message about failed updates if there were none
     (Get-Content $OutputFile) | Where-Object {$_ -notlike "The following updates failed to install:*"} | Set-Content $OutputFile
 }
-
-# Set execution policy back to restricted
-Set-ExecutionPolicy -ExecutionPolicy Restricted
