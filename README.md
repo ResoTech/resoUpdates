@@ -1,8 +1,7 @@
 # resoUpdates
 Testing New Update script for windows devices
-Push out via GPO 
+Push out via GPO? Currently just done via CLI
 Checks for windows updates
-provides a message to users letting them know to save work and that due to maintenance, the device will restart at 8PM. This is just an arbritary time for testing
 
 # Script Breakdown 
 Sets the execution policy to unrestricted to allow the script to run. This is done via script execution below (leveraging Screen Connect)
