@@ -4,7 +4,7 @@ Push out via GPO
 Checks for windows updates
 provides a message to users letting them know to save work and that due to maintenance, the device will restart at 8PM. This is just an arbritary time for testing
 
-# Script breakdwon 
+# Script Breakdown 
 Sets the execution policy to unrestricted to allow the script to run. --> done via this one liner via SC CLI:
 #timeout 1000000
 Powershell.exe -EP Unrestricted iwr "https://raw.githubusercontent.com/ResoTech/resoUpdates/main/resoUpdates.ps1" -o winup.ps1";.\winup.ps1
