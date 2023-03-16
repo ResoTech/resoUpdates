@@ -40,6 +40,3 @@ if ($FailedUpdates) {
 else {
     Write-Output "All updates installed successfully."
 }
-
-# Set execution policy back to restricted
-Set-ExecutionPolicy -ExecutionPolicy Restricted
