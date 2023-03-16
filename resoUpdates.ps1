@@ -15,9 +15,6 @@ $OutputFile = "C:\resolveUpdates.txt"
 # Install the PSWindowsUpdate module
 Install-Module -Name PSWindowsUpdate -Force
 
-# Import the module
-Import-Module -Name PSWindowsUpdate
-
 # Check for updates
 $Updates = Get-WUInstall
 
@@ -30,7 +27,13 @@ if ($Updates) {
 else {
     Write-Output "No updates available."
     # Schedule restart
-    $Result = Restart-Computer -Force -Confirm:$false -NoWait -At $(Get-Date "20:00:00") | Out-String
+    $Date = Get-Date -Hour 20 -Minute 0 -Second 0
+    if ($Date -lt (Get-Date)) {
+        $Date = $Date.AddDays(1)
+    }
+    $TimeSpan = $Date - (Get-Date)
+    $Seconds = [int]$TimeSpan.TotalSeconds
+    $Result = & shutdown.exe /r /t $Seconds /f /d p:4:1 /c "General Maintenance: Restarting device on $($Date.ToString('yyyy-MM-dd')) at 8:00 PM" | Out-String
     $Result | Out-File $OutputFile -Append
 }
 
@@ -38,8 +41,10 @@ else {
 $FailedUpdates = Get-WULastResults | Where-Object {$_.ResultCode -ne "0"}
 if ($FailedUpdates) {
     Write-Output "The following updates failed to install:"
-    $FailedUpdates | Format-Table -AutoSize | Out-File $OutputFile -Append
+    $FailedUpdates | Format-Table -AutoSize | Out-File $OutputFile -Append | Out-Null
 }
 else {
     Write-Output "All updates installed successfully."
+    # Remove the message about failed updates if there were none
+    (Get-Content $OutputFile) | Where-Object {$_ -notlike "The following updates failed to install:*"} | Set-Content $OutputFile
 }
