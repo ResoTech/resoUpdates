@@ -29,6 +29,9 @@ if ($Updates) {
 }
 else {
     Write-Output "No updates available."
+    # Schedule restart
+    $Result = Restart-Computer -Force -Confirm:$false -NoWait -At $(Get-Date "20:00:00") | Out-String
+    $Result | Out-File $OutputFile -Append
 }
 
 # Check for failed updates
