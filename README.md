@@ -2,7 +2,8 @@
 Testing New Update script for windows devices
 
 Push out via GPO potentially in the future
-Currently just done via cli in sc
+
+Currently done via cli in sc
 
 # Script Breakdown 
 Sets the execution policy to unrestricted to allow the script to run. This is done via the command line. 
