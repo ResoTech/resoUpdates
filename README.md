@@ -1,5 +1,6 @@
 # resoUpdates
 Testing New Update script for windows devices
+
 Push out via GPO potentially in the future
 Currently just done via cli in sc
 
