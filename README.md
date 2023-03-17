@@ -9,7 +9,9 @@ Currently done via cli in sc
 Sets the execution policy to unrestricted to allow the script to run. This is done via the command line. 
 timeout parameter prevents connectwise terminal from timing out. 
 
-TODO: look at registey for extending timeout, may not help though from sc terminal. 
+TODO: look at registey for extending timeout...
+
+sc terminal timeout is inconsistent, some workstations are ok others time out. 
 
 #timeout 1000000
 
